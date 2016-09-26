@@ -20,4 +20,11 @@ RUN apk update && \
   rm -rf /var/cache/apk/* && \
   update-ca-certificates
 
+RUN adduser -u 4096 -D obcon -s /bin/bash
+RUN cp /root/.bashrc /home/obcon && \
+  chown -R 4096:4096 /home/obcon
+
+USER obcon
+WORKDIR /home/obcon
+
 CMD ["/bin/bash"]
